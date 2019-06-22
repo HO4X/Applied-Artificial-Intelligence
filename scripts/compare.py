@@ -23,21 +23,12 @@ def get_siamese_model(input_shape):
 
     # Convolutional Neural Network
     model = Sequential()
-    #model.add(Conv2D(64, (10,10), activation='relu', input_shape=input_shape,
-    #               kernel_initializer=initialize_weights, kernel_regularizer=l2(2e-4)))
     model.add(Conv2D(12, (10,10), activation='relu', input_shape=input_shape))
     model.add(MaxPooling2D())
-    #model.add(Conv2D(128, (7,7), activation='relu',
-    #                 kernel_initializer=initialize_weights,
-    #                 bias_initializer=initialize_bias, kernel_regularizer=l2(2e-4)))
     model.add(Conv2D(24, (7,7), activation='relu'))
     model.add(MaxPooling2D())
-    #model.add(Conv2D(128, (4,4), activation='relu', kernel_initializer=initialize_weights,
-    #                 bias_initializer=initialize_bias, kernel_regularizer=l2(2e-4)))
     model.add(Conv2D(24, (4,4), activation='relu'))
     model.add(MaxPooling2D())
-    #model.add(Conv2D(256, (4,4), activation='relu', kernel_initializer=initialize_weights,
-    #                 bias_initializer=initialize_bias, kernel_regularizer=l2(2e-4)))
     model.add(Conv2D(32, (4,4), activation='relu'))
     model.add(Flatten())
     model.add(Dense(4096, activation='sigmoid'))
@@ -51,7 +42,6 @@ def get_siamese_model(input_shape):
     L1_distance = L1_layer([encoded_l, encoded_r])
 
     # Add a dense layer with a sigmoid unit to generate the similarity score
-    #prediction = Dense(1,activation='sigmoid',bias_initializer=initialize_bias, name="main_output")(L1_distance)
     prediction = Dense(1,activation='sigmoid', name="main_output")(L1_distance)
 
     # Connect the inputs with the outputs
@@ -64,7 +54,7 @@ def get_siamese_model(input_shape):
 model = get_siamese_model((128, 128, 1))
 
 
-model.load_weights(os.path.join("./", "weights.300.h5"))
+model.load_weights(os.path.join("../01_weights", "weights.650.h5"))
 
 
 
