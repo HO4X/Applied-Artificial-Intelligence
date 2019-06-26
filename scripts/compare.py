@@ -54,7 +54,7 @@ def get_siamese_model(input_shape):
 model = get_siamese_model((128, 128, 1))
 
 
-model.load_weights(os.path.join("./", "weights.650.h5"))
+model.load_weights(os.path.join("./", "weights.1750.h5"))
 
 
 
